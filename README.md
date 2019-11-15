@@ -6,10 +6,7 @@ visiohome is free and open source project will help you build a smart home.
 
 The project will contain all the necessary source files for ESP32-based modules for IoT tasks in building your smart home.
 
-Variables (communication, device, custom) are ordered in CANopen Object
-Dictionary and are accessible from both: C code and from CAN network.
-
-visiohome homepage is https://visiohome.visiodesk.net/
+visiohome homepage is https://visiohome.visiodesk.net/ (in developing)
 
 visiohome Features
 ----------------
