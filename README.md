@@ -16,7 +16,7 @@ visiohome Features
  - Collection of information from counters.
  - Other smart home tasks.
 
- For you, we provide MQTT server without restrictions and committed for free. The registration link will appear here.
+ For you, we provide MQTT server without restrictions and for free. The registration link will appear here.
 
  In addition to our MQTT server you can always use alternative options links to examples will appear here.
 
