@@ -25,7 +25,7 @@ Usage of the visiohome module
 
 Documentation, support and contributions
 -------------------------
-Code is documented in header files.
+Code is documented in files.
 
 File structure
 --------------
@@ -43,13 +43,11 @@ History of the project
 
 License
 -------
-visiohome is distributed under the terms of the GNU General Public
-License version 3 with the classpath exception.
+visiohome is distributed under the terms of the GNU General Public License version 3 with the classpath exception.
 
 visiohome is free and open source software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program. If not, see http://www.gnu.org/licenses/.
 
@@ -57,11 +55,7 @@ You should have received a copy of the GNU General Public License along with thi
 visiohome can be easely used also in commercial embedded projects.
 Following clarification and special
 [linking exception to the GNU General Public License](https://en.wikipedia.org/wiki/GPL_linking_exception)
-is included to the distribution terms of CANopenNode:
-
-Linking this library statically or dynamically with other modules is
-making a combined work based on this library. Thus, the terms and
-conditions of the GNU General Public License cover the whole combination.
+is included to the distribution terms of visiohome:
 
 As a special exception, the copyright holders of this library give
 you permission to link this library with independent modules to
