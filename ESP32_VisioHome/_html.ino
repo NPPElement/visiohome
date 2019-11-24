@@ -5,9 +5,10 @@ void WebServerInit()
 {
   server.on("/",          pagesHome);
   server.on("/home",      pagesHome);
-  server.on("/ajax",      pagesAJAX);
+  server.on("/info",      pagesInfo);
+  server.on("/AJAX_Info", infoAJAX);
+  server.on("/AJAX_Data", pagesAJAX);
   server.on("/command",   pagesCommand);
-
   server.on("/admin", HTTP_GET, []() {
     webpage = "";
     append_HTML_header();
@@ -39,7 +40,7 @@ void WebServerInit()
       "<br><br>"
       "<div id='prg'></div>"
       "<br><div id='prgbar'><div id='bar'></div></div><br><a href=\"";
-    webpage += visiobas;
+    webpage += visiodesk;
     webpage +=
       "/visiohome/app/sketch-visiohome.ino.bin\">new visiohome sketch</a><br></form>"
       "<script>"
@@ -120,8 +121,8 @@ void append_HTML_header()
   webpage  = "";
   webpage += "<!DOCTYPE html><html lang=\"ru\" manifest=\"appcache.manifest\"><head>";
   webpage += "<script src=\"https://code.jquery.com/jquery-3.2.1.min.js\"></script>"; // AJAX data
-  webpage += "<script src=\""+ visiobas +"/visiohome/module/js/visiohome-1.0.0.js\"></script>"; // visiohome js
-  webpage += "<link href=\""+ visiobas +"/visiohome/module/css/visiohome-1.0.0.css\" rel=\"stylesheet\">"; // visiohome css
+  webpage += "<script src=\""+ visiodesk +"/visiohome/module/js/visiohome-1.1.0.js\"></script>"; // visiohome js
+  webpage += "<link href=\""+ visiodesk +"/visiohome/module/css/visiohome-1.0.0.css\" rel=\"stylesheet\">"; // visiohome css
   webpage += "\n\
     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"/>\n\
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=no\"/>\n\

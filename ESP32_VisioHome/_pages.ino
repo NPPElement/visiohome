@@ -1,18 +1,16 @@
 /*******************************************************************************
   pages HOME
 *******************************************************************************/
-void pagesHome()
-{
-  Serial.println(F("------------------------------------"));
-  Serial.println(F("showHome"));
+void pagesHome() {
+  debugger("pages Home \n");
 
   webpage = ""; // don't delete this command, it ensures the server works reliably!
   append_HTML_header();
 
   webpage += "<div class=\"info-container\">";
   
-  webpage += "<span class=\"inf temp\" id=\"AI_01\"></span>";
-  webpage += "<span class=\"inf hum\" id=\"AI_02\"></span>";
+  webpage += "<span class=\"inf temp\" id=\"temperature\"></span>";
+  webpage += "<span class=\"inf hum\" id=\"humidity\"></span>";
 
   webpage += "</div>";
   
@@ -94,10 +92,8 @@ void pagesAJAX()
 /*******************************************************************************
   pages Command
 *******************************************************************************/
-void pagesCommand()
-{
-  Serial.println(F("------------------------------------"));
-  Serial.println(F("pagesCommand"));
+void pagesCommand() {
+  debugger("pagesCommand\n");
   
   String message="{"; 
   if (server.args() > 0 )
@@ -125,18 +121,98 @@ void pagesCommand()
     }
   }
   message += "}";
-  
   server.send(200, "application/json",message);
+}
+
+/*******************************************************************************
+  pages Info
+*******************************************************************************/
+void pagesInfo ()
+{
+  webpage = ""; // don't delete this command, it ensures the server works reliably!
+  append_HTML_header();
+  webpage += "<h1>Info terminal</h1>";
+  webpage += "<div class=\"info\"></div>";
+  webpage += "</div></body>";
+  //webpage += "<script>";
+  //webpage += "ws = new WebSocket(\"ws://visiohome.local:9999\");";
+  //webpage += "ws.onopen  = function() {";
+  //webpage += "$(\".info\").append('<div class=\"value\"><em class=\"active\"> Connection opened... </em></div>');";
+  //webpage += "};";
+  //webpage += "ws.onclose  = function() {";
+  //webpage += "$(\".info\").append('<div class=\"value\"><em class=\"active\"> Connection close... </em></div>');";
+  //webpage += "};";
+  //webpage += "ws.onmessage = function(evt) {";
+  //webpage += "$(\".value\").append('<em>' +evt.data+ '</em></div>');";
+  //webpage += "};";
+  //webpage += "</script>"; // socket.send("Текст сообщения");
+  webpage += "</html>";
+  
+  server.send(200, "text/html", webpage);
+}
+/*
+void pagesInfo ()
+{
+  webpage = ""; // don't delete this command, it ensures the server works reliably!
+  append_HTML_header();
+  webpage += "<h1>Info terminal</h1>";
+ 
+  webpage += "<div class=\"info\"></div>";
+  
+  webpage += "</div></body>";
+  webpage +="\
+  <script>\
+  $(function()\
+  {\
+    setInterval(requestData, 3000);\
+    function requestData()\
+    {\
+      $.get(\"/AJAX_Info\")\
+      .done(function(data)\
+      {\
+        if (data.INFO)\
+          {\
+            $(\".info\").append('<div class=\"value\"><em class=\"active\">'+ data.Time+ '</em><em>'+ data.INFO+'<em></div>');\
+          }\
+          else\
+            {\
+              $(\".info\").append('');\
+            }\
+          }).fail(function()\
+          {\
+          });\
+        }\
+      });\
+      </script>";
+  webpage += "</html>";
+  server.send(200, "text/html", webpage); // Send a response to the client to enter their inputs, if needed, Enter=defaults
+}*/
+
+void infoAJAX() {
+  static char MOD_MIFARE_Text_Output[32+1]="";
+  static char MOD_LCD_Text_Output[256+1]="";
+  /* server responds 200 with a json payload */
+  /* although preferably concatenate your real sensor data here */
+  String message="{";  
+  message += "\"Time\": \"";
+  message += GetTime();
+  message += "\"";
+  message += ", \"INFO\": \"";
+  message += infopage;
+  message += "\"";
+  message += "}";
+  server.send(200, "application/json",message);
+  infopage = "";
+  
 }
 
 /*******************************************************************************
   pages NotFound
 *******************************************************************************/
-void handleNotFound()
-{
-  Serial.println(F("------------------------------------"));
-  Serial.println(F("handleNotFound"));
+void handleNotFound() {
+  debugger("handleNotFound\n");
   
   String message = "Command not found\n";
   server.send(404, "text/plain", message);
+  
 }

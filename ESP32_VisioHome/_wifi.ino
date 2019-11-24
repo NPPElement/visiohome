@@ -3,18 +3,28 @@
 *******************************************************************************/
 void StartWiFi(const char* ssid, const char* password)
 {
-  Serial.println(F("------------------------------------"));
-  Serial.println(F("StartWiFi"));
-
+  debugger("StartWiFi \n");
   int connAttempts = 0;
-  Serial.print(F("\r\nConnecting to: ")); Serial.println(String(ssid));
+  debugger("Connecting to: "); debugger(ssid); debugger("\n");
+  
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED )
   {
-    delay(500); Serial.print(".");
-    if (connAttempts > 20) {
-      Serial.println("Failed to connect to WiFi");
+    debugger(".");
+    delay(200);
+    if (connAttempts > 3) {
+      debugger("Failed to connect to WiFi \n");
     }
     connAttempts++;
   }
+
+  //int locIP = WiFi.localIP();
+  //debugger("IP address: "); debugger((int) locIP); debugger("\n");
+
+  /*use mdns for host name resolution*/
+  if (!MDNS.begin(host)) {                 //http://visiohome.local
+    debugger("Error setting up MDNS responder!\n");
+  }
+  debugger("mDNS responder started\n");
+  debugger("HOST: http://"); debugger(host); debugger(".local\n");
 }
